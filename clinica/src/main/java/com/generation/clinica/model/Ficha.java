@@ -14,43 +14,39 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tbFicha")
-public class FichaModel {
-	
+public class Ficha {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="codFicha")
 	private long codFicha;
 	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="codPaciente", referencedColumnName="codPaciente")
+	private Paciente paciente;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="codPeciente", referencedColumnName = "codPeciente")
-	private PacienteModel paciente;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="crm", referencedColumnName = "crm")
-	private MedicoModel medico;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="crm", referencedColumnName="crm")
+	private Medico medico;
 	
 	@Column(name="dataConsulta")
 	private Date dataConsulta = new java.sql.Date(System.currentTimeMillis());
 	
-	@Column(name="valorConsulta", nullable = false)
+	@Column(name="valorConsulta", nullable=false)
 	private double valorConsulta;
 	
-	@Column(name="diagnostico", length = 255)
+	@Column(name="diagnostico", length=255)
 	private String diagnostico;
 	
-	@Column(name="procedimento", length = 255)
+	@Column(name="procedimento", length=255)
 	private String procedimento;
 	
-	@Column(name="exame", length = 255)
+	@Column(name="exame", length=255)
 	private String exame;
 	
 	@Column(name="dataRetorno")
 	private Date dataRetorno;
-	
 
 	
-
 	public long getCodFicha() {
 		return codFicha;
 	}
@@ -59,19 +55,19 @@ public class FichaModel {
 		this.codFicha = codFicha;
 	}
 
-	public PacienteModel getPaciente() {
+	public Paciente getPaciente() {
 		return paciente;
 	}
 
-	public void setPaciente(PacienteModel paciente) {
+	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
 
-	public MedicoModel getMedico() {
+	public Medico getMedico() {
 		return medico;
 	}
 
-	public void setMedico(MedicoModel medico) {
+	public void setMedico(Medico medico) {
 		this.medico = medico;
 	}
 
@@ -124,5 +120,4 @@ public class FichaModel {
 	}
 	
 	
-
 }

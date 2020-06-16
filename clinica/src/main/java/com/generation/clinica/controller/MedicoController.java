@@ -15,50 +15,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.generation.clinica.model.MedicoModel;
+import com.generation.clinica.model.Especialidade;
+import com.generation.clinica.model.Medico;
 import com.generation.clinica.repository.MedicoRepository;
 
 @RestController
 @RequestMapping("/medico")
 @CrossOrigin("*")
 public class MedicoController {
- @Autowired
- private MedicoRepository repository;
+	@Autowired
+	private MedicoRepository repository;
 	
-    //get
- 	// pegando a medico pelo Código
- 	@GetMapping("/{crm}")
- 	public ResponseEntity<MedicoModel>
- 	GetById(@PathVariable String crm){
- 		return repository.findById(crm). map(resp-> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
- 	}
+	@GetMapping("/{crm}")
+	public ResponseEntity<Medico> GetById(@PathVariable String crm){
+		return repository.findById(crm)
+				.map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.notFound().build());
+	}
 	
- 	//get
- 	@GetMapping
-     public ResponseEntity<List<MedicoModel>>  getAll(){
+	@GetMapping
+	public ResponseEntity<List<Medico>> GetAll(){
 		return ResponseEntity.ok(repository.findAll());
- 		
- 	}
- 	//get
- 	@GetMapping("/medico/{nome}")
- 	public ResponseEntity<List<MedicoModel>>
- 	getByNome(@PathVariable String nome){
- 		return ResponseEntity.ok(repository.findAllBynomeMedicoContainingIgnoreCase(nome));
- 	}
-	//post
+	}
+	
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<Medico>> GetByNome(@PathVariable String nome){
+		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
+	}
+	
 	@PostMapping
-	public ResponseEntity<MedicoModel> Post (@RequestBody MedicoModel medico){
+	public ResponseEntity<Medico> post(@RequestBody Medico medico){
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(medico));
 	}
-	//put
+	
 	@PutMapping
-	public ResponseEntity<MedicoModel> Put (@RequestBody MedicoModel medico){
+	public ResponseEntity<Medico> put (@RequestBody Medico medico) {
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(medico));
 	}
-	//delete
+	
 	@DeleteMapping("/{crm}")
-	public void delete (@PathVariable String crm ) {
+	public void delete(@PathVariable String crm) {
 		repository.deleteById(crm);
 	}
-	
 }

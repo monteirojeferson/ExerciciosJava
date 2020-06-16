@@ -9,27 +9,26 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="tbPaciente")
-public class PacienteModel {
-	
+@Table(name = "tbPaciente")
+public class Paciente {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long codPaciente;
 	
-	@Column(name="nomePaciente", nullable = false)
-	@Size(min=2,max=80)
-	private String nomePaciente;
+	@Column(name = "nome", nullable=false)
+	@Size(min=2, max=80)
+	private String nome;
 	
-	@Column(name="endereco", nullable = false)
-	@Size(min=2,max=80)
+	@Column(name = "endereco", nullable=false)
+	@Size(min=2, max=80)
 	private String endereco;
 	
-	@Column(name="cep", nullable = false)
+	@Column(name = "cep", nullable=false)
 	@Size(max=9)
 	private String cep;
 	
-	@Column(name="telefone", nullable = false)
-	@Size(max=30)
+	@Column(name = "telefone", nullable=false)
+	@Size(max=80)
 	private String telefone;
 
 	public long getCodPaciente() {
@@ -40,14 +39,12 @@ public class PacienteModel {
 		this.codPaciente = codPaciente;
 	}
 
-
-
-	public String getNomePaciente() {
-		return nomePaciente;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomePaciente(String nomePaciente) {
-		this.nomePaciente = nomePaciente;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getEndereco() {
@@ -73,5 +70,7 @@ public class PacienteModel {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
+	
+	
+	
 }

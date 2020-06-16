@@ -8,14 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tbEspecialidade")
-public class EspecialidadeModel {
+@Table(name = "tbEspecialidade")
+public class Especialidade {
 	
-	@Id // Primary Key
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // Autoincremento
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long codEspecialidade;
 	
-	@Column(name="nomeEspecialidade", nullable = false, length = 50)
+	@Column(name = "nomeEspecialidade", nullable=false, length=50)
 	private String nomeEspecialidade;
 
 	public long getCodEspecialidade() {
@@ -33,6 +33,6 @@ public class EspecialidadeModel {
 	public void setNomeEspecialidade(String nomeEspecialidade) {
 		this.nomeEspecialidade = nomeEspecialidade;
 	}
-
+	
 	
 }
